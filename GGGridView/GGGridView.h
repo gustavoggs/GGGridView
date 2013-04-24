@@ -11,16 +11,15 @@
  * if the grid orientation is Horizontal, the view will expand verticall
  */
 
-enum GGGridViewOrientation {
-    GGGridViewOrientationHorizontal,
-    GGGridViewOrientationVertical
-};
-typedef enum GGGridViewOrientation GGGridViewOrientation;
+typedef enum {
+    GGGridViewOrientationVertical,
+    GGGridViewOrientationHorizontal
+} GGGridViewOrientation;
 
-@interface GGGridView : UIView
+@interface GridView : UIView
 
-@property GGGridViewOrientation orientation;
-
+- (void) setOrientation:(GGGridViewOrientation)orientation;
 - (void) addView:(UIView*)view;
+- (void) marginTop:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom left:(CGFloat)left;
 
 @end
