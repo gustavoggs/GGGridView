@@ -1,12 +1,18 @@
 //
-//  GGGridView.m
+//  GridView.m
 //
 //  Created by Gustavo Grana on 3/28/13.
 //
 
-#import "GGGridView.h"
+#import "GridView.h"
 
-@implementation GGGridView
+@implementation GridView {
+    GGGridViewOrientation _orientation;
+    CGFloat marginTop;
+    CGFloat marginRight;
+    CGFloat marginBottom;
+    CGFloat marginLeft;
+}
 
 - (id)initWithFrame: (CGRect)frame {
     self = [super initWithFrame:frame];
@@ -49,29 +55,31 @@
     CGFloat lastY = 0;
     CGRect newFrame = self.frame;
     if (_orientation == GGGridViewOrientationHorizontal) {
+        lastY = marginTop;
         for (UIView* view in [self subviews]) {
-            if (lastX + widthCell > self.frame.size.width) {
+            if (lastX + widthCell + marginLeft > self.frame.size.width) {
                 lastX = 0;
-                lastY += heightCell;
+                lastY += (marginBottom + heightCell + marginTop);
             }
-            [view setCenter:CGPointMake(lastX + widthCell/2, lastY + heightCell/2)];
-            lastX+= widthCell;
+            [view setCenter:CGPointMake(lastX + marginLeft + widthCell/2, lastY + heightCell/2)];
+            lastX+= (marginLeft + widthCell + marginRight);
         }
         if (lastX != 0) {
-            lastY += heightCell;
+            lastY += (heightCell+ marginBottom);
         }
         newFrame.size.height = lastY;
     } else {
+        lastX = marginLeft;
         for (UIView* view in [self subviews]) {
-            if (lastY + heightCell > self.frame.size.height) {
+            if (lastY + heightCell + marginTop > self.frame.size.height) {
                 lastY = 0;
-                lastX += widthCell;
+                lastX += (marginRight + widthCell + marginLeft);
             }
-            [view setCenter:CGPointMake(lastX + widthCell/2, lastY + heightCell/2)];
-            lastY+= heightCell;
+            [view setCenter:CGPointMake(lastX + widthCell/2, lastY + marginTop + heightCell/2)];
+            lastY+= ( marginTop + heightCell + marginBottom);
         }
         if (lastY != 0) {
-            lastX += widthCell;
+            lastX += widthCell + marginRight;
         }
         newFrame.size.width = lastX;
     }
@@ -82,7 +90,6 @@
 #pragma mark - api methods
 
 - (void) setOrientation:(GGGridViewOrientation)orientation{
-    NSLog(@"orientation: %d",orientation);
     _orientation = orientation;
     [self buildView];
 }
@@ -95,6 +102,13 @@
 - (void) addView:(UIView*)view{
     [self addSubview:view];
     [self buildView];
+}
+
+- (void) marginTop:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom left:(CGFloat)left {
+    marginTop = top;
+    marginRight = right;
+    marginBottom = bottom;
+    marginLeft = left;
 }
 
 @end
