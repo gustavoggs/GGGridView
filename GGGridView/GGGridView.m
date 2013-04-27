@@ -1,12 +1,12 @@
 //
-//  GridView.m
+//  GGGridView.m
 //
 //  Created by Gustavo Grana on 3/28/13.
 //
 
-#import "GridView.h"
+#import "GGGridView.h"
 
-@implementation GridView {
+@implementation GGGridView {
     GGGridViewOrientation _orientation;
     CGFloat marginTop;
     CGFloat marginRight;
