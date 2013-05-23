@@ -16,9 +16,11 @@ typedef enum {
     GGGridViewOrientationHorizontal
 } GGGridViewOrientation;
 
-@interface GridView : UIView
+@interface GGGridView : UIView
 
-- (void) setOrientation:(GGGridViewOrientation)orientation;
+@property (nonatomic) GGGridViewOrientation orientation;
+@property (nonatomic) CGSize sizeGridItem;
+
 - (void) addView:(UIView*)view;
 - (void) marginTop:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom left:(CGFloat)left;
 

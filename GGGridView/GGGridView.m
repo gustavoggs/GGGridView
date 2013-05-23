@@ -41,6 +41,7 @@
 #pragma mark - auxiliar methods;
 
 - (void) defaultInit {
+    _sizeGridItem = CGSizeMake(-1, -1);
     _orientation = GGGridViewOrientationHorizontal;
 }
 
@@ -48,9 +49,12 @@
     if ([[self subviews] count] == 0) {
         return;
     }
-    UIView* referenceView = [[self subviews] objectAtIndex:0];
-    CGFloat widthCell = [referenceView frame].size.width;
-    CGFloat heightCell = [referenceView frame].size.height;
+    if ([self sizeGridItem].width == -1 && [self sizeGridItem].height == -1) {
+        UIView* referenceView = [[self subviews] objectAtIndex:0];
+        [self setSizeGridItem:[referenceView frame].size];
+    }
+    CGFloat widthCell = [self sizeGridItem].width;
+    CGFloat heightCell = [self sizeGridItem].height;
     CGFloat lastX = 0;
     CGFloat lastY = 0;
     CGRect newFrame = self.frame;
@@ -109,6 +113,7 @@
     marginRight = right;
     marginBottom = bottom;
     marginLeft = left;
+    [self buildView];
 }
 
 @end

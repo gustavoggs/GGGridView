@@ -12,6 +12,11 @@
     
     __weak IBOutlet GGGridView *gridView;
     __weak IBOutlet UITextField *tfSize;
+    
+    __weak IBOutlet UITextField *tfMarginTop;
+    __weak IBOutlet UITextField *tfMarginRight;
+    __weak IBOutlet UITextField *tfMarginBottom;
+    __weak IBOutlet UITextField *tfMarginLeft;
 }
 
 - (void)viewDidLoad {
@@ -29,7 +34,7 @@
 
 - (IBAction)didEndEditing:(id)sender {
     CGRect newFrame = gridView.frame;
-    switch (gridView.orientation) {
+    switch ([gridView orientation]) {
         case GGGridViewOrientationVertical:
             newFrame.size.height = [tfSize.text floatValue];
             break;
@@ -45,12 +50,45 @@
     }];
 }
 
+- (IBAction)actionClear:(id)sender {
+    for (UIView * v in [gridView subviews]) {
+        [v removeFromSuperview];
+    }
+    CGRect frame = [gridView frame];
+    frame.size = CGSizeZero;
+    [gridView setFrame:frame];
+}
+
+- (IBAction)actionSetMargin:(id)sender {
+    CGFloat top = [tfMarginTop.text floatValue];
+    CGFloat right = [tfMarginRight.text floatValue];
+    CGFloat bottom = [tfMarginBottom.text floatValue];
+    CGFloat left = [tfMarginLeft.text floatValue];
+    [gridView marginTop:top right:right bottom:bottom left:left];
+}
+
 - (IBAction)actionAddOneView:(id)sender {
+    UIView* v;
+    v = [self newGridView];
+    [gridView addView:v];
+}
+
+#pragma mark - auxiliar methods
+- (UIView*) newGridView {
+    UIView* v;
+    v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 128, 128)];
+    
     int a = rand();
     CGFloat r = a/100. - a/100;
-    UIView* v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 128, 128)];
     [v setBackgroundColor:[UIColor colorWithRed:r green:r blue:r alpha:1.0]];
-    [gridView addView:v];
+    
+    UILabel* lbl = [[UILabel alloc] initWithFrame:[v frame]];
+    [lbl setTextAlignment:NSTextAlignmentCenter];
+    [lbl setTextColor:[UIColor whiteColor]];
+    [lbl setText:[NSString stringWithFormat:@"%d",[[gridView subviews] count]]];
+    [lbl setBackgroundColor:[UIColor clearColor]];
+    [v addSubview:lbl];
+    return v;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -60,5 +98,7 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+
 
 @end
