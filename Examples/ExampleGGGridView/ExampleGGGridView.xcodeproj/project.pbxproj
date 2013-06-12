@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52F33E141768A92000FBCD54 /* GGGridScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F33E131768A92000FBCD54 /* GGGridScrollView.m */; };
 		EC8BEB07170A6899000056D0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8BEB06170A6899000056D0 /* UIKit.framework */; };
 		EC8BEB09170A6899000056D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8BEB08170A6899000056D0 /* Foundation.framework */; };
 		EC8BEB0B170A6899000056D0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8BEB0A170A6899000056D0 /* CoreGraphics.framework */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52F33E121768A92000FBCD54 /* GGGridScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGGridScrollView.h; sourceTree = "<group>"; };
+		52F33E131768A92000FBCD54 /* GGGridScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGGridScrollView.m; sourceTree = "<group>"; };
 		EC8BEB03170A6899000056D0 /* ExampleGGGridView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleGGGridView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC8BEB06170A6899000056D0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EC8BEB08170A6899000056D0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -116,6 +119,8 @@
 			children = (
 				EC8BEB2A170A68C1000056D0 /* GGGridView.h */,
 				EC8BEB2B170A68C1000056D0 /* GGGridView.m */,
+				52F33E121768A92000FBCD54 /* GGGridScrollView.h */,
+				52F33E131768A92000FBCD54 /* GGGridScrollView.m */,
 			);
 			name = GGGridView;
 			path = ../../../GGGridView;
@@ -192,6 +197,7 @@
 				EC8BEB17170A6899000056D0 /* GGAppDelegate.m in Sources */,
 				EC8BEB20170A6899000056D0 /* GGViewController.m in Sources */,
 				EC8BEB2C170A68C1000056D0 /* GGGridView.m in Sources */,
+				52F33E141768A92000FBCD54 /* GGGridScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +322,7 @@
 				EC8BEB28170A6899000056D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

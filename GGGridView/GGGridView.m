@@ -43,6 +43,11 @@
 - (void) defaultInit {
     _sizeGridItem = CGSizeMake(-1, -1);
     _orientation = GGGridViewOrientationHorizontal;
+    marginTop = 0;
+    marginRight = 0;
+    marginBottom = 0;
+    marginLeft = 0;
+    [self setBackgroundColor:[UIColor redColor]];
 }
 
 - (void) buildView {
@@ -58,10 +63,16 @@
     CGFloat lastX = 0;
     CGFloat lastY = 0;
     CGRect newFrame = self.frame;
+    if (newFrame.size.width == 0) {
+        newFrame.size.width = widthCell;
+    }
+    if (newFrame.size.height == 0) {
+        newFrame.size.height = heightCell;
+    }
     if (_orientation == GGGridViewOrientationHorizontal) {
         lastY = marginTop;
         for (UIView* view in [self subviews]) {
-            if (lastX + widthCell + marginLeft > self.frame.size.width) {
+            if (lastX + widthCell + marginLeft > newFrame.size.width) {
                 lastX = 0;
                 lastY += (marginBottom + heightCell + marginTop);
             }
@@ -75,7 +86,7 @@
     } else {
         lastX = marginLeft;
         for (UIView* view in [self subviews]) {
-            if (lastY + heightCell + marginTop > self.frame.size.height) {
+            if (lastY + heightCell + marginTop > newFrame.size.height) {
                 lastY = 0;
                 lastX += (marginRight + widthCell + marginLeft);
             }

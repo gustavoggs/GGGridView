@@ -6,11 +6,11 @@
 //
 
 #import "GGViewController.h"
-#import "GGGridView.h"
+#import "GGGridScrollView.h"
 
 @implementation GGViewController {
     
-    __weak IBOutlet GGGridView *gridView;
+    __weak IBOutlet GGGridScrollView *gridView;
     __weak IBOutlet UITextField *tfSize;
     
     __weak IBOutlet UITextField *tfMarginTop;
@@ -85,7 +85,7 @@
     UILabel* lbl = [[UILabel alloc] initWithFrame:[v frame]];
     [lbl setTextAlignment:NSTextAlignmentCenter];
     [lbl setTextColor:[UIColor whiteColor]];
-    [lbl setText:[NSString stringWithFormat:@"%d",[[gridView subviews] count]]];
+    [lbl setText:[NSString stringWithFormat:@"%d",[[[[gridView subviews] objectAtIndex:0] subviews] count]]];
     [lbl setBackgroundColor:[UIColor clearColor]];
     [v addSubview:lbl];
     return v;
